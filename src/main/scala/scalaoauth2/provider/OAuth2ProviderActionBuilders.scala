@@ -2,7 +2,7 @@ package scalaoauth2.provider
 
 import play.api.mvc._
 
-import scala.concurrent.{ Future, ExecutionContext }
+import scala.concurrent.ExecutionContext
 
 trait OAuth2ProviderActionBuilders {
 

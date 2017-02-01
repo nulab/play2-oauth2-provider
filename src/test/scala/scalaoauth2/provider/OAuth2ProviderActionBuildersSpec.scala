@@ -2,7 +2,6 @@ package scalaoauth2.provider
 
 import org.scalatest._
 import org.scalatest.Matchers._
-import scala.concurrent.Future
 import play.api.test.Helpers._
 import play.api.test.FakeRequest
 import play.api.mvc.Results._
