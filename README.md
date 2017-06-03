@@ -14,6 +14,7 @@ libraryDependencies ++= Seq(
 
 Library version | Play version
 --------------- | ------------
+1.3.0           | 2.6.x
 1.2.0           | 2.5.x
 0.16.1          | 2.4.x
 0.14.0          | 2.3.x
@@ -78,12 +79,14 @@ POST    /oauth2/access_token                    controllers.OAuth2Controller.acc
 Finally, you can access to an authorized resource like this:
 
 ```scala
-import scalaoauth2.provider._
-object MyController extends Controller with OAuth2Provider {
-  def list = Action.async { implicit request =>
-    authorize(new MyDataHandler()) { authInfo =>
+class MyController @Inject() (components: ControllerComponents)
+  extends AbstractController(components) with OAuth2Provider {
+
+  val action = Action.async { request =>
+    authorize(new MockDataHandler()) { authInfo =>
       val user = authInfo.user // User is defined on your system
       // access resource for the user
+      ???
     }
   }
 }
@@ -95,12 +98,11 @@ If you'd like to change the OAuth workflow, modify handleRequest methods of `Tok
 
 You can write more easily authorize action by using Action composition.
 
-Play Framework's documentation is [here](https://www.playframework.com/documentation/2.5.x/ScalaActionsComposition).
+Play Framework's documentation is [here](https://www.playframework.com/documentation/2.6.x/ScalaActionsComposition).
 
 ```scala
-object MyController extends Controller {
-
-  import scalaoauth2.provider.OAuth2ProviderActionBuilders._
+class MyController @Inject() (components: ControllerComponents)
+  extends AbstractController(components) with OAuth2ProviderActionBuilders {
 
   def list = AuthorizedAction(new MyDataHandler()) { request =>
     val user = request.authInfo.user // User is defined on your system
