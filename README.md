@@ -61,8 +61,8 @@ class MyTokenEndpoint extends TokenEndpoint {
 Define your own controller with mixining ```OAuth2Provider``` trait provided by this library to issue access token with customized `TokenEndpoint`.
 
 ```scala
-import scalaoauth2.provider._
-object OAuth2Controller extends Controller with OAuth2Provider {
+class MyController @Inject() (components: ControllerComponents)
+  extends AbstractController(components) with OAuth2Provider {
   override val tokenEndpoint = new MyTokenEndpoint()
 
   def accessToken = Action.async { implicit request =>
