@@ -8,7 +8,7 @@ Add "play2-oauth2-provider" to library dependencies of your project.
 
 ```scala
 libraryDependencies ++= Seq(
-  "com.nulab-inc" %% "scala-oauth2-provider" % "1.3.0",
+  "com.nulab-inc" %% "scala-oauth2-core" % "1.3.0",
   "com.nulab-inc" %% "play2-oauth2-provider" % "1.3.0"
 )
 ```
