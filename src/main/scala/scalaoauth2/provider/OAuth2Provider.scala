@@ -131,7 +131,7 @@ trait OAuth2TokenEndpointProvider extends OAuth2BaseProvider {
         "refresh_token" -> JsString(_)
       } ++ r.scope.map {
         "scope" -> JsString(_)
-      }
+      } ++ r.params.map(e => (e._1, JsString(e._2)))
   }
 
 }
