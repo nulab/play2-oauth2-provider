@@ -5,7 +5,7 @@ import play.api.mvc._
 import scala.concurrent.{ Future, ExecutionContext }
 
 case class AuthorizedActionFunction[U](handler: ProtectedResourceHandler[U])(implicit ctx: ExecutionContext)
-    extends ActionFunction[Request, ({ type L[A] = AuthInfoRequest[A, U] })#L] with OAuth2Provider {
+  extends ActionFunction[Request, ({ type L[A] = AuthInfoRequest[A, U] })#L] with OAuth2Provider {
 
   override protected def executionContext: ExecutionContext = ctx
 
