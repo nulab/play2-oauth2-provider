@@ -118,14 +118,12 @@ trait OAuth2TokenEndpointProvider extends OAuth2BaseProvider {
 
   protected[scalaoauth2] def responseOAuthErrorJson(e: OAuthError): JsValue = Json.obj(
     "error" -> e.errorType,
-    "error_description" -> e.description
-  )
+    "error_description" -> e.description)
 
   protected[scalaoauth2] def responseAccessToken[U](r: GrantHandlerResult[U]) = {
     Map[String, JsValue](
       "token_type" -> JsString(r.tokenType),
-      "access_token" -> JsString(r.accessToken)
-    ) ++ r.expiresIn.map {
+      "access_token" -> JsString(r.accessToken)) ++ r.expiresIn.map {
         "expires_in" -> JsNumber(_)
       } ++ r.refreshToken.map {
         "refresh_token" -> JsString(_)

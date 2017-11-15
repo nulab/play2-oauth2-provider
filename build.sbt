@@ -1,6 +1,6 @@
-val playVersion = "2.6.0-RC2"
+val playVersion = "2.6.7"
 val commonDependenciesInTestScope = Seq(
-  "org.scalatest" %% "scalatest" % "3.0.3" % "test",
+  "org.scalatest" %% "scalatest" % "3.0.4" % "test",
   "ch.qos.logback" % "logback-classic" % "1.2.3" % "test"
 )
 
@@ -11,11 +11,10 @@ val unusedWarnings = Seq(
 
 lazy val scalaOAuth2ProviderSettings =
   Defaults.coreDefaultSettings ++
-    scalariformSettings ++
     Seq(
       organization := "com.nulab-inc",
-      scalaVersion := "2.11.11",
-      crossScalaVersions := Seq("2.11.11", "2.12.2"),
+      scalaVersion := "2.12.4",
+      crossScalaVersions := Seq("2.11.11", "2.12.4"),
       scalacOptions ++= Seq("-deprecation", "-unchecked", "-feature"),
       scalacOptions ++= unusedWarnings,
       publishTo := {
@@ -50,10 +49,8 @@ lazy val scalaOAuth2ProviderSettings =
       scalacOptions in (c, console) --= unusedWarnings
     )
 
-lazy val root = Project(
-  id = "play2-oauth2-provider",
-  base = file("."),
-  settings = scalaOAuth2ProviderSettings ++ Seq(
+lazy val root = (project in file("."))
+  .settings(
     name := "play2-oauth2-provider",
     description := "Support scala-oauth2-core library on Playframework Scala",
     version := "1.3.1-SNAPSHOT",
@@ -63,4 +60,3 @@ lazy val root = Project(
       "com.typesafe.play" %% "play-test" % playVersion % "test"
     ) ++ commonDependenciesInTestScope
   )
-)
