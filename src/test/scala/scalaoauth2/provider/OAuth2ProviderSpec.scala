@@ -23,9 +23,7 @@ class OAuth2ProviderSpec extends FlatSpec {
         expiresIn = Some(3600),
         refreshToken = None,
         scope = None,
-        params = Map.empty
-      )
-    )
+        params = Map.empty))
     map.get("token_type") should contain(JsString("Bearer"))
     map.get("access_token") should contain(JsString("access_token"))
     map.get("expires_in") should contain(JsNumber(3600))
@@ -49,8 +47,7 @@ class OAuth2ProviderSpec extends FlatSpec {
   it should "get parameters from form url encoded body" in {
     val values = Map(
       "id" -> List("1000"),
-      "language" -> List("Scala")
-    )
+      "language" -> List("Scala"))
     val request = FakeRequest(method = "GET", uri = "/", headers = FakeHeaders(), body = AnyContentAsFormUrlEncoded(values))
     val params = TestOAuthProvider.getParam(request)
     params.get("id") should contain(List("1000"))
@@ -60,8 +57,7 @@ class OAuth2ProviderSpec extends FlatSpec {
   it should "get parameters from query string" in {
     val values = Map(
       "id" -> List("1000"),
-      "language" -> List("Scala")
-    )
+      "language" -> List("Scala"))
     val request = FakeRequest(method = "GET", uri = "/?version=2.11", headers = FakeHeaders(), body = AnyContentAsFormUrlEncoded(values))
     val params = TestOAuthProvider.getParam(request)
     params.get("id") should contain(List("1000"))
@@ -72,8 +68,7 @@ class OAuth2ProviderSpec extends FlatSpec {
   it should "get parameters from JSON body" in {
     val json = Json.obj(
       "id" -> 1000,
-      "language" -> "Scala"
-    )
+      "language" -> "Scala")
     val request = FakeRequest(method = "GET", uri = "/", headers = FakeHeaders(), body = AnyContentAsJson(json))
     val params = TestOAuthProvider.getParam(request)
     params.get("id") should contain(List("1000"))

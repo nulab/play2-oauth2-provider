@@ -12,7 +12,7 @@ import play.api.test.FakeRequest
 class OAuth2ProviderActionBuildersSpec extends FlatSpec {
 
   class MyController @Inject() (components: ControllerComponents)
-      extends AbstractController(components) with OAuth2ProviderActionBuilders {
+    extends AbstractController(components) with OAuth2ProviderActionBuilders {
 
     val action = AuthorizedAction(new MockDataHandler) { request =>
       Ok(request.authInfo.user.name)
