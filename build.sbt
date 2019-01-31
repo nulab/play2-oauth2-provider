@@ -13,8 +13,8 @@ lazy val scalaOAuth2ProviderSettings =
   Defaults.coreDefaultSettings ++
     Seq(
       organization := "com.nulab-inc",
-      scalaVersion := "2.12.6",
-      crossScalaVersions := Seq("2.11.12", "2.12.6"),
+      scalaVersion := "2.12.8",
+      crossScalaVersions := Seq("2.11.12", "2.12.8"),
       scalacOptions ++= Seq("-deprecation", "-unchecked", "-feature"),
       scalacOptions ++= unusedWarnings,
       publishTo := {
