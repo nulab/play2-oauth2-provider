@@ -9,12 +9,13 @@ Add "play2-oauth2-provider" to library dependencies of your project.
 ```scala
 libraryDependencies ++= Seq(
   "com.nulab-inc" %% "scala-oauth2-core" % "1.3.0",
-  "com.nulab-inc" %% "play2-oauth2-provider" % "1.3.0"
+  "com.nulab-inc" %% "play2-oauth2-provider" % "1.4.0"
 )
 ```
 
 Library version | Play version
 --------------- | ------------
+1.4.0           | 2.7.x
 1.3.0           | 2.6.x
 1.2.0           | 2.5.x
 0.16.1          | 2.4.x
@@ -99,7 +100,7 @@ If you'd like to change the OAuth workflow, modify handleRequest methods of `Tok
 
 You can write more easily authorize action by using Action composition.
 
-Play Framework's documentation is [here](https://www.playframework.com/documentation/2.6.x/ScalaActionsComposition).
+Play Framework's documentation is [here](https://www.playframework.com/documentation/2.7.x/ScalaActionsComposition).
 
 ```scala
 class MyController @Inject() (components: ControllerComponents)
