@@ -51,6 +51,7 @@ lazy val scalaOAuth2ProviderSettings =
 
 lazy val root = (project in file("."))
   .settings(
+    scalaOAuth2ProviderSettings,
     name := "play2-oauth2-provider",
     description := "Support scala-oauth2-core library on Playframework Scala",
     version := "1.4.0",
