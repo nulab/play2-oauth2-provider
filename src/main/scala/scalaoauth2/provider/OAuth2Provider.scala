@@ -1,5 +1,6 @@
 package scalaoauth2.provider
 
+import play.api.http.HttpVerbs
 import play.api.libs.json._
 import play.api.mvc._
 
@@ -12,15 +13,23 @@ import scala.language.implicitConversions
 trait OAuth2BaseProvider extends Results {
 
   private[provider] def getParam[A](request: Request[A]): Map[String, Seq[String]] = {
-    (request.body match {
-      case body: play.api.mvc.AnyContent if body.asFormUrlEncoded.isDefined => body.asFormUrlEncoded.get
-      case body: play.api.mvc.AnyContent if body.asMultipartFormData.isDefined => body.asMultipartFormData.get.asFormUrlEncoded
-      case body: play.api.mvc.AnyContent if body.asJson.isDefined => FormUtils.fromJson(js = body.asJson.get).mapValues(Seq(_))
+    val unwrap = request.body match {
+      case body: play.api.mvc.AnyContent =>
+        body.asFormUrlEncoded.orElse(body.asMultipartFormData).orElse(body.asJson).getOrElse(body)
+      case body => body
+    }
+    val data = unwrap match {
       case body: Map[_, _] => body.asInstanceOf[Map[String, Seq[String]]]
-      case body: play.api.mvc.MultipartFormData[_] => body.asFormUrlEncoded
+      case body: MultipartFormData[_] => body.asFormUrlEncoded
+      case Right(body: MultipartFormData[_]) => body.asFormUrlEncoded
       case body: play.api.libs.json.JsValue => FormUtils.fromJson(js = body).mapValues(Seq(_))
-      case _ => Map.empty[String, Seq[String]]
-    }) ++ request.queryString
+      case _ => Map.empty
+    }
+    val method = request.method.toUpperCase match {
+      case HttpVerbs.POST | HttpVerbs.PUT | HttpVerbs.PATCH => Map.empty
+      case _ => request.queryString
+    }
+    (data ++ method).toMap
   }
 
   private[provider] object FormUtils {
