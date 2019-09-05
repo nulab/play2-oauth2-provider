@@ -1,6 +1,5 @@
 package scalaoauth2.provider
 
-import play.api.http.HttpVerbs
 import play.api.libs.json._
 import play.api.mvc._
 
@@ -18,18 +17,13 @@ trait OAuth2BaseProvider extends Results {
         body.asFormUrlEncoded.orElse(body.asMultipartFormData).orElse(body.asJson).getOrElse(body)
       case body => body
     }
-    val data = unwrap match {
+    ((unwrap match {
       case body: Map[_, _] => body.asInstanceOf[Map[String, Seq[String]]]
       case body: MultipartFormData[_] => body.asFormUrlEncoded
       case Right(body: MultipartFormData[_]) => body.asFormUrlEncoded
       case body: play.api.libs.json.JsValue => FormUtils.fromJson(js = body).mapValues(Seq(_))
       case _ => Map.empty
-    }
-    val method = request.method.toUpperCase match {
-      case HttpVerbs.POST | HttpVerbs.PUT | HttpVerbs.PATCH => Map.empty
-      case _ => request.queryString
-    }
-    (data ++ method).toMap
+    }) ++ request.queryString).toMap
   }
 
   private[provider] object FormUtils {
