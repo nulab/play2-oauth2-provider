@@ -63,7 +63,7 @@ lazy val root = (project in file("."))
     scalaOAuth2ProviderSettings,
     name := "play2-oauth2-provider",
     description := "Support scala-oauth2-core library on Play Framework Scala",
-    version := "1.4.3-SNAPSHOT",
+    version := "1.5.0",
     libraryDependencies ++= Seq(
       "com.nulab-inc" %% "scala-oauth2-core" % "1.5.0" % "provided",
       "com.typesafe.play" %% "play" % playVersion % "provided",
