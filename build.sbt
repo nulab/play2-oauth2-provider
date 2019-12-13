@@ -1,4 +1,4 @@
-val playVersion = "2.7.3"
+val playVersion = "2.8.0"
 val commonDependenciesInTestScope = Seq(
   "org.scalatest" %% "scalatest" % "3.0.8" % "test",
   "ch.qos.logback" % "logback-classic" % "1.2.3" % "test"
@@ -19,8 +19,8 @@ lazy val scalaOAuth2ProviderSettings =
   Defaults.coreDefaultSettings ++
     Seq(
       organization := "com.nulab-inc",
-      scalaVersion := "2.13.0",
-      crossScalaVersions := Seq("2.11.12", "2.12.8", "2.13.0"),
+      scalaVersion := "2.13.1",
+      crossScalaVersions := Seq("2.13.1", "2.12.10"),
       scalacOptions ++= Seq("-deprecation", "-unchecked", "-feature"),
       scalacOptions ++= unusedWarnings(scalaVersion.value),
       publishTo := {
