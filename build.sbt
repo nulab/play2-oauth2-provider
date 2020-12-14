@@ -1,6 +1,6 @@
 val playVersion = "2.8.6"
 val commonDependenciesInTestScope = Seq(
-  "org.scalatest" %% "scalatest" % "3.1.0" % "test",
+  "org.scalatest" %% "scalatest" % "3.2.3" % "test",
   "ch.qos.logback" % "logback-classic" % "1.2.3" % "test"
 )
 

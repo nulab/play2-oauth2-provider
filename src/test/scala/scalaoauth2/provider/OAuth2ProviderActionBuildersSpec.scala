@@ -1,15 +1,14 @@
 package scalaoauth2.provider
 
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers._
+import play.api.mvc.{AbstractController, ControllerComponents}
+import play.api.test.Helpers._
+import play.api.test.{FakeRequest, _}
+
 import javax.inject.Inject
 
-import org.scalatest._
-import org.scalatest.Matchers._
-import play.api.mvc.{AbstractController, ControllerComponents}
-import play.api.test._
-import play.api.test.Helpers._
-import play.api.test.FakeRequest
-
-class OAuth2ProviderActionBuildersSpec extends FlatSpec {
+class OAuth2ProviderActionBuildersSpec extends AnyFlatSpec {
 
   class MyController @Inject() (components: ControllerComponents)
       extends AbstractController(components)

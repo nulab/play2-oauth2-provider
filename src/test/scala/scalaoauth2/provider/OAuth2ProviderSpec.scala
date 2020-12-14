@@ -1,12 +1,12 @@
 package scalaoauth2.provider
 
-import org.scalatest.Matchers._
-import org.scalatest._
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers._
 import play.api.libs.json._
 import play.api.mvc.{AnyContentAsFormUrlEncoded, AnyContentAsJson}
 import play.api.test.{FakeHeaders, FakeRequest}
 
-class OAuth2ProviderSpec extends FlatSpec {
+class OAuth2ProviderSpec extends AnyFlatSpec {
 
   case class User(id: Long, name: String)
 
