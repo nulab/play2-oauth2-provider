@@ -9,7 +9,9 @@ trait OAuth2ProviderActionBuilders {
   def AuthorizedAction[U](
       handler: ProtectedResourceHandler[U]
   ): ActionBuilder[({ type L[A] = AuthInfoRequest[A, U] })#L, AnyContent] = {
-    AuthorizedActionFunction(handler)(self.defaultExecutionContext) compose Action
+    AuthorizedActionFunction(handler)(
+      self.defaultExecutionContext
+    ) compose Action
   }
 
 }

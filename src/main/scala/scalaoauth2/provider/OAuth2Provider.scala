@@ -6,8 +6,7 @@ import play.api.mvc._
 import scala.concurrent.{ExecutionContext, Future}
 import scala.language.implicitConversions
 
-/**
-  * Basic OAuth2 provider trait.
+/** Basic OAuth2 provider trait.
   */
 trait OAuth2BaseProvider extends Results {
 
@@ -40,15 +39,14 @@ trait OAuth2BaseProvider extends Results {
       js match {
         case JsObject(fields) =>
           fields
-            .map {
-              case (key, value) =>
-                fromJson(
-                  Option(prefix)
-                    .filterNot(_.isEmpty)
-                    .map(_ + ".")
-                    .getOrElse("") + key,
-                  value
-                )
+            .map { case (key, value) =>
+              fromJson(
+                Option(prefix)
+                  .filterNot(_.isEmpty)
+                  .map(_ + ".")
+                  .getOrElse("") + key,
+                value
+              )
             }
             .foldLeft(Map.empty[String, String])(_ ++ _)
         case JsArray(values) =>
@@ -98,8 +96,7 @@ trait OAuth2ProtectedResourceProvider extends OAuth2BaseProvider {
     new ProtectedResourceRequest(request.headers.toMap, param)
   }
 
-  /**
-    * Authorize to already created access token in ProtectedResourceHandler process and return the response to client.
+  /** Authorize to already created access token in ProtectedResourceHandler process and return the response to client.
     *
     * @param handler Implemented ProtectedResourceHandler for authenticate to your system.
     * @param callback Callback is called when authentication is successful.
@@ -141,8 +138,7 @@ trait OAuth2TokenEndpointProvider extends OAuth2BaseProvider {
     new AuthorizationRequest(request.headers.toMap, param)
   }
 
-  /**
-    * Issue access token in AuthorizationHandler process and return the response to client.
+  /** Issue access token in AuthorizationHandler process and return the response to client.
     *
     * @param handler Implemented AuthorizationHandler for register access token to your system.
     * @param request Play Framework is provided HTTP request interface.
@@ -185,8 +181,7 @@ trait OAuth2TokenEndpointProvider extends OAuth2BaseProvider {
 
 }
 
-/**
-  * OAuth2Provider supports issue access token and authorize.
+/** OAuth2Provider supports issue access token and authorize.
   *
   * <h3>Create controller for issue access token</h3>
   * @example {{{
