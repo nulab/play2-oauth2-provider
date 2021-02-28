@@ -1,4 +1,4 @@
-# play2-oauth2-provider [![Build Status](https://travis-ci.com/nulab/play2-oauth2-provider.svg?branch=master)](https://travis-ci.com/nulab/play2-oauth2-provider)
+# play2-oauth2-provider [![CI](https://github.com/nulab/play2-oauth2-provider/actions/workflows/ci.yml/badge.svg)](https://github.com/nulab/play2-oauth2-provider/actions/workflows/ci.yml)
 
 This library is enabled using [scala-oauth2-provider](https://github.com/nulab/scala-oauth2-provider) in Play Framework.
 
