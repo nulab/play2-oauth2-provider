@@ -1,7 +1,7 @@
 val playVersion = "2.8.6"
 val commonDependenciesInTestScope = Seq(
-  "org.scalatest" %% "scalatest" % "3.2.3" % "test",
-  "ch.qos.logback" % "logback-classic" % "1.2.3" % "test"
+  "org.scalatest" %% "scalatest" % "3.2.10" % "test",
+  "ch.qos.logback" % "logback-classic" % "1.2.6" % "test"
 )
 
 def unusedWarnings(scalaVersion: String) =
@@ -19,8 +19,8 @@ lazy val scalaOAuth2ProviderSettings =
   Defaults.coreDefaultSettings ++
     Seq(
       organization := "com.nulab-inc",
-      scalaVersion := "2.13.4",
-      crossScalaVersions := Seq("2.13.4", "2.12.12"),
+      scalaVersion := "2.13.6",
+      crossScalaVersions := Seq("2.13.6", "2.12.14"),
       scalacOptions ++= Seq("-deprecation", "-unchecked", "-feature"),
       scalacOptions ++= unusedWarnings(scalaVersion.value),
       publishTo := {
@@ -31,8 +31,8 @@ lazy val scalaOAuth2ProviderSettings =
         else Some("releases" at nexus + "service/local/staging/deploy/maven2")
       },
       publishMavenStyle := true,
-      publishArtifact in Test := false,
-      pomIncludeRepository := { x =>
+      Test / publishArtifact := false,
+      pomIncludeRepository := { _ =>
         false
       },
       pomExtra := <url>https://github.com/nulab/play2-oauth2-provider</url>
@@ -55,7 +55,7 @@ lazy val scalaOAuth2ProviderSettings =
           </developer>
         </developers>
     ) ++ Seq(Compile, Test).flatMap(c =>
-      scalacOptions in (c, console) --= unusedWarnings(scalaVersion.value)
+      c / console / scalacOptions --= unusedWarnings(scalaVersion.value)
     )
 
 lazy val root = (project in file("."))
@@ -63,7 +63,7 @@ lazy val root = (project in file("."))
     scalaOAuth2ProviderSettings,
     name := "play2-oauth2-provider",
     description := "Support scala-oauth2-core library on Play Framework Scala",
-    version := "1.5.0",
+    version := "1.5.1-SNAPSHOT",
     libraryDependencies ++= Seq(
       "com.nulab-inc" %% "scala-oauth2-core" % "1.5.0" % "provided",
       "com.typesafe.play" %% "play" % playVersion % "provided",
