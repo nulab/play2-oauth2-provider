@@ -1,7 +1,7 @@
 val playVersion = "2.8.6"
 val commonDependenciesInTestScope = Seq(
-  "org.scalatest" %% "scalatest" % "3.2.10" % "test",
-  "ch.qos.logback" % "logback-classic" % "1.2.6" % "test"
+  "org.scalatest" %% "scalatest" % "3.2.17" % "test",
+  "ch.qos.logback" % "logback-classic" % "1.2.12" % "test"
 )
 
 def unusedWarnings(scalaVersion: String) =
