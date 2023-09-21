@@ -26,7 +26,7 @@ trait OAuth2BaseProvider extends Results {
       case body: MultipartFormData[_]        => body.asFormUrlEncoded
       case Right(body: MultipartFormData[_]) => body.asFormUrlEncoded
       case body: play.api.libs.json.JsValue =>
-        FormUtils.fromJson(js = body).mapValues(Seq(_))
+        FormUtils.fromJson(js = body).view.mapValues(Seq(_))
       case _ => Map.empty
     }) ++ request.queryString).toMap
   }
@@ -69,7 +69,7 @@ trait OAuth2BaseProvider extends Results {
 
   protected def toOAuthErrorString(e: OAuthError): String = {
     val params = Seq("error=\"" + e.errorType + "\"") ++
-      (if (!e.description.isEmpty) {
+      (if (e.description.nonEmpty) {
          Seq("error_description=\"" + e.description + "\"")
        } else {
          Nil
