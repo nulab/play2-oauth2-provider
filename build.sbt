@@ -1,26 +1,18 @@
-val playVersion = "2.8.6"
+val playVersion = "2.9.0-RC2"
 val commonDependenciesInTestScope = Seq(
   "org.scalatest" %% "scalatest" % "3.2.17" % "test",
-  "ch.qos.logback" % "logback-classic" % "1.2.12" % "test"
+  "ch.qos.logback" % "logback-classic" % "1.4.11" % "test"
 )
 
 def unusedWarnings(scalaVersion: String) =
-  CrossVersion.partialVersion(scalaVersion) match {
-    case Some((2, 11)) =>
-      Seq(
-        "-Ywarn-unused",
-        "-Ywarn-unused-import"
-      )
-    case _ =>
-      Seq("-Ywarn-unused:-imports,_")
-  }
+  Seq("-Ywarn-unused:-imports,_")
 
 lazy val scalaOAuth2ProviderSettings =
   Defaults.coreDefaultSettings ++
     Seq(
       organization := "com.nulab-inc",
-      scalaVersion := "2.13.12",
-      crossScalaVersions := Seq("2.12.18"),
+      scalaVersion := "3.3.0",
+      crossScalaVersions := Seq("2.13.12"),
       scalacOptions ++= Seq("-deprecation", "-unchecked", "-feature"),
       scalacOptions ++= unusedWarnings(scalaVersion.value),
       publishTo := {
