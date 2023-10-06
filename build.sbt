@@ -5,14 +5,14 @@ val commonDependenciesInTestScope = Seq(
 )
 
 def unusedWarnings(scalaVersion: String) =
-  Seq("-Ywarn-unused:-imports,_")
+  Seq("-Wunused:imports")
 
 lazy val scalaOAuth2ProviderSettings =
   Defaults.coreDefaultSettings ++
     Seq(
       organization := "com.nulab-inc",
-      scalaVersion := "3.3.0",
-      crossScalaVersions := Seq("2.13.12"),
+      scalaVersion := "3.3.1",
+      crossScalaVersions ++= Seq("2.13.12"),
       scalacOptions ++= Seq("-deprecation", "-unchecked", "-feature"),
       scalacOptions ++= unusedWarnings(scalaVersion.value),
       publishTo := {
@@ -57,7 +57,7 @@ lazy val root = (project in file("."))
     description := "Support scala-oauth2-core library on Play Framework Scala",
     version := "1.5.1-SNAPSHOT",
     libraryDependencies ++= Seq(
-      "com.nulab-inc" %% "scala-oauth2-core" % "1.5.0" % "provided",
+      "com.nulab-inc" %% "scala-oauth2-core" % "1.6.0" % "provided",
       "com.typesafe.play" %% "play" % playVersion % "provided",
       "com.typesafe.play" %% "play-test" % playVersion % "test"
     ) ++ commonDependenciesInTestScope
