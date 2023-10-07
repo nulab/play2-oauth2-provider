@@ -5,6 +5,7 @@ import org.scalatest.matchers.should.Matchers._
 import play.api.mvc.{AbstractController, ControllerComponents}
 import play.api.test.Helpers._
 import play.api.test.{FakeRequest, _}
+import scala.concurrent.Future
 
 import javax.inject.Inject
 
@@ -14,8 +15,8 @@ class OAuth2ProviderActionBuildersSpec extends AnyFlatSpec {
       extends AbstractController(components)
       with OAuth2ProviderActionBuilders {
 
-    val action = AuthorizedAction(new MockDataHandler) { request =>
-      Ok(request.authInfo.user.name)
+    val action = AuthorizedAction(new MockDataHandler).async { request =>
+      Future.successful(Ok(request.authInfo.user.name))
     }
 
   }
