@@ -8,31 +8,31 @@ Add "play2-oauth2-provider" to library dependencies of your project.
 
 ```scala
 libraryDependencies ++= Seq(
-  "com.nulab-inc" %% "scala-oauth2-core" % "1.5.0",
+  "com.nulab-inc" %% "scala-oauth2-core" % "1.6.0",
   "com.nulab-inc" %% "play2-oauth2-provider" % "1.5.0"
 )
 ```
 
-Library version | Play version
---------------- | ------------
-1.5.0           | 2.8.x
-1.4.2           | 2.7.x
-1.3.0           | 2.6.x
-1.2.0           | 2.5.x
-0.16.1          | 2.4.x
-0.14.0          | 2.3.x
-0.7.4           | 2.2.x
+| Library version | Play version |
+| --------------- | ------------ |
+| 1.5.0           | 2.8.x        |
+| 1.4.2           | 2.7.x        |
+| 1.3.0           | 2.6.x        |
+| 1.2.0           | 2.5.x        |
+| 0.16.1          | 2.4.x        |
+| 0.14.0          | 2.3.x        |
+| 0.7.4           | 2.2.x        |
 
 ## How to use
 
 You should follow four steps below to work with Play Framework.
 
-* Customizing Grant Handlers
-* Define a controller to issue access token
-* Assign a route to the controller
-* Access to an authorized resource
+- Customizing Grant Handlers
+- Define a controller to issue access token
+- Assign a route to the controller
+- Access to an authorized resource
 
-You want to use which grant types are supported or to use a customized handler for a grant type, you should override the ```handlers``` map in a customized ```TokenEndpoint``` trait.
+You want to use which grant types are supported or to use a customized handler for a grant type, you should override the `handlers` map in a customized `TokenEndpoint` trait.
 
 ```scala
 class MyTokenEndpoint extends TokenEndpoint {
@@ -46,7 +46,7 @@ class MyTokenEndpoint extends TokenEndpoint {
 }
 ```
 
-Here's an example of a customized ```TokenEndpoint``` that 1) only supports the ```password``` grant type, and 2) customizes the ```password``` grant type handler to not require client credentials:
+Here's an example of a customized `TokenEndpoint` that 1) only supports the `password` grant type, and 2) customizes the `password` grant type handler to not require client credentials:
 
 ```scala
 class MyTokenEndpoint extends TokenEndpoint {
@@ -60,7 +60,7 @@ class MyTokenEndpoint extends TokenEndpoint {
 }
 ```
 
-Define your own controller with mixining ```OAuth2Provider``` trait provided by this library to issue access token with customized `TokenEndpoint`.
+Define your own controller with mixining `OAuth2Provider` trait provided by this library to issue access token with customized `TokenEndpoint`.
 
 ```scala
 class MyController @Inject() (components: ControllerComponents)
