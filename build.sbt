@@ -1,4 +1,4 @@
-val playVersion = "2.9.0"
+val playVersion = "3.0.0"
 val commonDependenciesInTestScope = Seq(
   "org.scalatest" %% "scalatest" % "3.2.17" % "test",
   "ch.qos.logback" % "logback-classic" % "1.4.11" % "test"
@@ -58,7 +58,7 @@ lazy val root = (project in file("."))
     version := "1.6.1-SNAPSHOT",
     libraryDependencies ++= Seq(
       "com.nulab-inc" %% "scala-oauth2-core" % "1.6.0" % "provided",
-      "com.typesafe.play" %% "play" % playVersion % "provided",
-      "com.typesafe.play" %% "play-test" % playVersion % "test"
+      "org.playframework" %% "play" % playVersion % "provided",
+      "org.playframework" %% "play-test" % playVersion % "test"
     ) ++ commonDependenciesInTestScope
   )
